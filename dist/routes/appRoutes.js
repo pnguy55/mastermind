@@ -18,7 +18,7 @@ module.exports = app => {
 	// Restart game
 	router.get('/restart', appController.restart.bind(appController));
 	// Congratulations to winner
-	router.get('/congratulations/:winner', appController.congratulations.bind(appController));
+	router.get('/congratulations', appController.congratulations.bind(appController));
 	// Enter home page
 	router.get('/', appController.home.bind(appController));
 	// Retrieve a single game with id

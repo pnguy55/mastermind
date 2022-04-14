@@ -21,6 +21,10 @@ I made the following determinations with this application.
   <li>I want a lightweight and easy to use database that would allow anyone to use the game with very little setup effort, and for this I chose sqlite3.</li>
 </ul>
 
+## Extensions I chose to add
+1) Automated testing.
+2) Score tracking.
+
 ## How to play
 To play Mastermind start the application with the following command in the console.
 <code>npm run start</code>

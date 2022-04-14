@@ -209,9 +209,10 @@ class RandomNumberController {
 				await this.guessDao.create(guessCreateInfo);
 			}
 
-			const currentGame = await this.gameDao.search({}, 2, 0, false, true);
+			const currentGame = await this.gameDao.search({}, 1, 0, false, true);
 			if (currentGame[0].winner) {
-				res.redirect(`/congratulations/:${currentGame[0].winner}`);
+				const { winner, combination } = currentGame[0];
+				res.redirect(`/congratulations?winner=${winner}&combination=${combination}`);
 				return;
 			}
 
@@ -222,20 +223,24 @@ class RandomNumberController {
 	}
 
 	async congratulations(req, res) {
-		const { params, query } = req;
+		const { query } = req;
 
 		let winner;
+		let combination;
 		// Validate request
 		try {
-			(0, _verifyMandatoryFieldsDefined2.default)(params, ['winner']);
-			winner = params.winner.replace(':', '').replace('%20', ' ');
+			(0, _verifyMandatoryFieldsDefined2.default)(query, ['winner', 'combination']);
+
+			winner = query.winner.replace(':', '').replace('%20', ' ');
+			combination = query.combination.replace(/%7C/g, '|');
 		} catch (err) {
 			res.render('error', { title: 'Hey', message: err.message });
 			return;
 		}
 
 		res.render('congratulations', {
-			winner
+			winner,
+			combination
 		});
 	}
 
