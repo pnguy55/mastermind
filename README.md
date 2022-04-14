@@ -26,6 +26,7 @@ For a breakdown of the data models you can check out the ERD here: https://lucid
 ## Extensions I chose to add
 1) Automated testing.
 2) Score tracking.
+3) Multiplayer
 
 ## How to play
 To play Mastermind start the application with the following command in the console.
