@@ -21,6 +21,8 @@ I made the following determinations with this application.
   <li>I want a lightweight and easy to use database that would allow anyone to use the game with very little setup effort, and for this I chose sqlite3.</li>
 </ul>
 
+For a breakdown of the data models you can check out the ERD here: https://lucid.app/lucidchart/228ee236-cf58-4665-896c-fc30ada900cc/edit?invitationId=inv_13996dea-33fc-45ef-b665-73e6f779229c
+
 ## Extensions I chose to add
 1) Automated testing.
 2) Score tracking.
