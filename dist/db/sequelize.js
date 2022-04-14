@@ -49,7 +49,8 @@ player.hasMany(guess, {
 		field: 'playerId',
 		allowNull: false
 	},
-	as: 'guesses'
+	as: 'guesses',
+	hooks: true
 });
 // edit the following force: false to true to reset db on each time you run the application.
 sequelize.sync({ force: false }).then(() => {

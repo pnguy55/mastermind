@@ -45,6 +45,7 @@ player.hasMany(
 			allowNull: false,
 		},
 		as: 'guesses',
+		hooks: true,
 	},
 );
 // edit the following force: false to true to reset db on each time you run the application.

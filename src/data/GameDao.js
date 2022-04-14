@@ -32,19 +32,29 @@ export default class GameDao {
     const where = {};
 
     includes.push({
-      all: true,
-      nested: true,
-    });
-
-    where['deletedAt'] = {[Op.eq]: null};
+      model: player,
+      required: true,
+      as: 'players',
+      include: [{
+        model: guess,
+        as: 'guesses',
+      }]
+    })
 
     try {
-			const gameSearchResults = await game.findAll({
+			const gameSearchResults = await game.findAll({  
+        logging: (sql, queryObject) => {
+          console.log(sql)
+        },
         where: where,
         include: includes,
         limit: 1, // default: 50
         offset: 0, // default: 0
-        order: [['gameId', 'DESC']],
+        order: [
+          ['gameId', 'DESC'],
+          [{model: player, as: 'players'}, 'playerId', 'ASC'],
+          [{model: player, as: 'players'}, {model: guess, as: 'guesses'}, 'guessId', 'ASC']
+       ],
       });
 			return gameSearchResults;
 		} catch(err) {

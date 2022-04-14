@@ -170,12 +170,13 @@ export default class RandomNumberController {
 					}
 				}
 
-				const guessCreateObject = {
+				const formattedGuess = currentGuess.split('').join('|');
+				const guessCreateInfo = {
 					playerId: playerInfos[count++].playerId,
-					guess: body[player]
+					guess: formattedGuess
 				}
 
-				guessCreateInfos.push(guessCreateObject);
+				guessCreateInfos.push(guessCreateInfo);
 			
 			}
 

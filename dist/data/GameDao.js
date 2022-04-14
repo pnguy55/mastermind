@@ -47,19 +47,25 @@ class GameDao {
     const where = {};
 
     includes.push({
-      all: true,
-      nested: true
+      model: _sequelize.player,
+      required: true,
+      as: 'players',
+      include: [{
+        model: _sequelize.guess,
+        as: 'guesses'
+      }]
     });
-
-    where['deletedAt'] = { [_sequelize2.Op.eq]: null };
 
     try {
       const gameSearchResults = await _sequelize.game.findAll({
+        logging: (sql, queryObject) => {
+          console.log(sql);
+        },
         where: where,
         include: includes,
         limit: 1, // default: 50
         offset: 0, // default: 0
-        order: [['gameId', 'DESC']]
+        order: [['gameId', 'DESC'], [{ model: _sequelize.player, as: 'players' }, 'playerId', 'ASC'], [{ model: _sequelize.player, as: 'players' }, { model: _sequelize.guess, as: 'guesses' }, 'guessId', 'ASC']]
       });
       return gameSearchResults;
     } catch (err) {
