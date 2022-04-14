@@ -6,7 +6,7 @@
   "main": "dist/app.js",
   "scripts": {
     "prestart": "npm run build",
-    "start": "open-cli http://localhost:4242 && node dist/app",
+    "start": "open-cli http://localhost:3000 && node dist/app",
     "start:dev": "nodemon src/app --exec \"npm run lint && node -r babel-register\"",
     "clean": "rimraf dist",
     "build": "npm run clean && mkdir dist && babel src/ -s -d dist",
