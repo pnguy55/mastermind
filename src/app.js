@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 import logger from 'morgan';
 import cookieParser from 'cookie-parser';
@@ -5,13 +6,12 @@ import bodyParser from 'body-parser';
 import http from 'http';
 import path from 'path';
 import config from 'config';
-import routes from './routes';
 
 const app = express();
 
 app.disable('x-powered-by'); // disable x-powered-by
-app.set('views', path.join(__dirname, '../views'));
-app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '../src/views'));
+app.set('view engine', 'pug')
 app.set('port', config.get('app.port'));
 
 
@@ -22,7 +22,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/', routes);
+
+
+require('./routes/appRoutes')(app)
+require('./routes/randomNumberRoutes')(app);
+require('./routes/gameRoutes')(app);
+require('./routes/playerRoutes')(app);
+require('./routes/guessRoutes')(app);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -49,4 +56,4 @@ server.listen(port, () => {
 	console.log(`Environment => ${config.util.getEnv('NODE_ENV')}`);
 });
 
-export default app;
+module.exports = app;

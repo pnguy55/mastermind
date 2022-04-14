@@ -1,0 +1,18 @@
+html
+    head
+        title= MasterMind
+        style
+          include ./style/index.css
+    body
+        h1 Welcome to Mastermind!
+        h2= message
+        form(method="POST" action="/")
+            input(type='text', name='player1' placeholder='Player 1 Name')
+            br
+            input(type='text', name='player2' placeholder='Player 2 Name')
+            br
+            input(type='text', name='player3' placeholder='Player 3 Name')
+            br
+            input(type='text', name='player4' placeholder='Player 4 Name')
+            br
+            button(type="submit") Start Game

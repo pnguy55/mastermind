@@ -1,0 +1,11 @@
+html
+    head
+        title= MasterMind
+        style
+          include ./style/index.css
+    body
+        h1 Congrats to #{winner}!
+        br
+        br
+        form(method="GET" action="/restart")
+          button(type="submit") Restart Game

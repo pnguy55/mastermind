@@ -6,5 +6,5 @@ module.exports = {
     	name: 'express-babel-starter',
     	port: PORT,
     	baseUrl: `http://localhost:${PORT}`,
-    }
+    },
 };

@@ -1,0 +1,39 @@
+html
+    meta(charset="UTF-8") 
+    head
+        title= MasterMind
+        style
+          include ./style/gameRoom.css
+    body
+        h1= page
+        h3 #{guessesRemaining} guesses remaining.
+        h3= error
+        br
+        h1= combination
+        br
+        form(method="POST" action="/play")
+          div(class="players")
+            each player in players
+              - var playerName = player["name"]
+              - var playerScore = player["score"]
+              - var playerGuesses = guesses[playerName]
+              div(class="player")
+                h3= playerName
+                h4 Current Score of #{playerScore} 
+                input(type='text', name=player placeholder= playerName + "'s guess")
+                h4 #{playerName}'s guess History
+                if playerGuesses
+                  ol
+                    each guess in playerGuesses
+                      li #{guess["guess"]} -> Feedback: #{guess["feedback"]}
+          button(type="submit") Make #{buttonMessage}
+          div(class="feedback-legend")
+            text Feedback legend: 
+            br
+            text O => Miss on target combination. 
+            br
+            text X => Hit on target combination.
+        br
+        br
+        form(method="GET" action="/restart")
+          button(type="submit") Restart Game

@@ -1,72 +1,43 @@
-## Express Babel Starter
-A starter scaffold for your express projects using babel so you can take advantage of es6+ features in a nodejs environment
-This scaffold does not in anyway enforce how you should structure your project. You can tweak it to suit your needs.
+# Welcome to Phi's Mastermind game's README
 
-Project generated with [express-generator](https://expressjs.com/en/starter/generator.html).
+## Prerequirements
+You will need an installation of node.js and npm to play this game.
+You can find the download link here: [Download Node and NPM](https://nodejs.org/en/download/)
 
-It's a small improvement over [babel's official guide](https://github.com/babel/example-node-server) and [vmasto's express-babel](https://github.com/vmasto/express-babel)
+## Setup
+To play this game of mastermind, clone this repo to your local machine.
+Make sure your console is pointed at the correct directory (root of this repo) and run:
+<code>npm i</code>.
 
+## Test suite
+To ensure that the game functions properly, try to run the test suite with the following command.
+<code>npm run test</code>
 
-#### What's Included?
-* [Expressjs](https://expressjs.com) as the web framework
-* Support for es6+(es2015, es2016, es2017....) features thanks to [Babel](https://babeljs.io)
-* Your codes are automatically polyfilled based on your run time environment by [babel-preset-env](https://github.com/babel/babel/tree/master/experimental/babel-preset-env)
-* There's linting option with [ESlint](https://eslint.org)
-* Testing with [Mocha](https://mochajs.org)
-* [Config](http://lorenwest.github.io/node-config/) module to store simple project configurations
+## Application core decisions
+I made the following determinations with this application.
+<ul>
+  <li>Test each endpoint gratuitously with a comprehensive testing suite.</li>
+  <li>I want to further utilize the robust api I've built to generate web pages on the server.</li>
+  <li>I want a lightweight and easy to use database that would allow anyone to use the game with very little setup effort, and for this I chose sqlite3.</li>
+</ul>
 
-#### Getting Started
+## How to play
+To play Mastermind start the application with the following command in the console.
+<code>npm run start</code>
 
+This should automatically open your browser and go to localhost:4242 where you can play the game.
 
+The rules are as follows:
+<ol>
+<li>At the start of the game the computer will randomly select a pattern of four different numbers from a total of 8 different numbers. (0-7)</li>
+<li>A player will have 10 attempts to guess the number combinations</li>
+<li>At the end of each guess, computer will provide one of the following response</li>
+<li>as feedback:
+  <ul>
+      <li>The player had guessed a correct number and its correct location</li>
+  </ul>
+</li>
+</ol>
+**Note that the computer’s feedback will not reveal which number the player guessed correctly
 
-<span style="color:gray"># Clone the project</span>
-```
-git clone https://github.com/benmalcom/express-babel-starter.git
-```
-`cd express-babel-starter`
-
-<span style="color:gray"># Make it your own</span>
-```
-rm -rf .git && git init (for windows users, delete .git folder)
-```
-<span style="color:gray"># Install dependencies</span>
-```
-npm install
-``` 
- If you use [Yarn](https://yarnpkg.com), just replace `npm` with `yarn` in the commands.
-##### Start Your development
-```
-npm run start:dev
-```
-This command starts a [nodemon](https://nodemon.io) process for your server restart when a code change happens.
-### Linting
-This scaffold uses [ESlint](https://eslint.org). 
-It extends [google's eslint config](https://github.com/google/eslint-config-google). Feel
-free to use your own rules or extend any other desirable rule(e.g [airbnb](https://www.npmjs.com/package/eslint-config-airbnb))
-You can run linting in watch mode with:
-```
-npm run lint
-```
-Note: `npm run start:dev` starts the server with linting in watch mode, you can remove it if need be.
-### Testing
-This scaffold uses [Mocha](https://mochajs.org). It also uses [Supertest](https://github.com/visionmedia/supertest) to demonstrate a simple routing test suite.
-Feel free to remove the supertest if you don't wish to use it.
-You can start the test runner in watch mode with:
-```
-npm test
-```
-##### Todo
-* Environment Variables
-* Deployment
-
-##### Disclosure
-There has always been debates online whether to use babel-transpilled codes on the server
-or not. Personally, I think it's fine and I've found this setup to be a sensible approach in doing so.
-That said, I'd suggest to take anything you read online with a grain of salt and refrain from blindly using boilerplates without first investigating personally.
-Node is very rapidly converging with the latest ECMAScript specification, and there's mostly full native support for ES2015 and ES2016. The need to transpile on the server is way smaller nowadays, albeit the language is constantly improving and transpiling will probably always be a part of our workflow. At the time of this writing the main benefits are mainly ES6 module syntax and async/await without flags.
-
->This opinion is adapted from [vmasto](https://github.com/vmasto) in his [express-babel](https://github.com/vmasto/express-babel) project
->because I agree with it.
-
-In any case, you can simply remove transpilation and keep everything else that this kit has to offer.
-If you see anything that needs improvement feel free to open an issue for discussion!
+If you want to clear the database to start fresh go to line 51 in src/db/sequelize.js and change <code>force: false</code> to <code>force: true</code> in 
