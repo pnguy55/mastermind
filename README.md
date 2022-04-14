@@ -29,7 +29,7 @@ I made the following determinations with this application.
 To play Mastermind start the application with the following command in the console.
 <code>npm run start</code>
 
-This should automatically open your browser and go to localhost:4242 where you can play the game.
+This should automatically open your browser and go to localhost:3000 where you can play the game.
 
 The rules are as follows:
 <ol>
